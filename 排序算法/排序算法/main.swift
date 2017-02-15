@@ -30,8 +30,8 @@ for i in (0...3).reverse() {
 var arr = [10,2,3,43,5,64,7,82,9,14,11,32,23,44,15];
 
 print("1-普通冒泡算法")
-func bubbleSort(arr: [Int]) -> [Int]  {
-    let startDate = NSDate()
+func bubbleSort(_ arr: [Int]) -> [Int]  {
+    let startDate = Date()
     let len = arr.count;
     var nums = arr
     for i in 0..<len {
@@ -43,15 +43,15 @@ func bubbleSort(arr: [Int]) -> [Int]  {
             }
         }
     }
-    let stopDate = NSDate()
-    print(stopDate.timeIntervalSinceDate(startDate))
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
     return nums;
 }
 print(bubbleSort(arr));
 
 print("1.1-改进冒泡算法1")
-func bubbleSort2(arr: [Int]) -> [Int] {
-    let startDate = NSDate()
+func bubbleSort2(_ arr: [Int]) -> [Int] {
+    let startDate = Date()
     var nums = arr;
     var i = arr.count-1;
     while i > 0 {
@@ -66,15 +66,15 @@ func bubbleSort2(arr: [Int]) -> [Int] {
             i = pos
         }
     }
-    let stopDate = NSDate()
-    print(stopDate.timeIntervalSinceDate(startDate))
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
     return nums;
 }
 print(bubbleSort2(arr));
 
 print("1.2-改进冒泡算法2")
-func bubbleSort3(arr: [Int]) -> [Int] {
-    let startDate = NSDate()
+func bubbleSort3(_ arr: [Int]) -> [Int] {
+    let startDate = Date()
     var nums = arr;
 
     var low = 0
@@ -94,7 +94,7 @@ func bubbleSort3(arr: [Int]) -> [Int] {
         }
         high = high_pos
 
-        for k in high.stride(to: low, by: -1) {
+        for k in stride(from: high, to: low, by: -1) {
             if nums[k] < nums[k-1] {
                 temp =  nums[k-1]
                 nums[k-1] = nums[k]
@@ -105,16 +105,16 @@ func bubbleSort3(arr: [Int]) -> [Int] {
         low = low_pos;
     }
 
-    let stopDate = NSDate()
-    print(stopDate.timeIntervalSinceDate(startDate))
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
     return nums;
 }
 print(bubbleSort3(arr));
 
 
 print("2-选择排序")
-func selectionSort(arr: [Int]) -> [Int] {
-    let startDate = NSDate()
+func selectionSort(_ arr: [Int]) -> [Int] {
+    let startDate = Date()
     var nums = arr
 
     let len = nums.count
@@ -132,15 +132,15 @@ func selectionSort(arr: [Int]) -> [Int] {
         nums[i] = nums[minIndex]
         nums[minIndex] = temp
     }
-    let stopDate = NSDate()
-    print(stopDate.timeIntervalSinceDate(startDate))
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
     return nums
 }
 print(selectionSort(arr));
 
 print("3-插入排序算法")
-func insertSort(arr: [Int]) -> [Int] {
-    let startDate = NSDate()
+func insertSort(_ arr: [Int]) -> [Int] {
+    let startDate = Date()
     var nums = arr
     let len = nums.count
 
@@ -154,15 +154,15 @@ func insertSort(arr: [Int]) -> [Int] {
         nums[j+1] = key
     }
 
-    let stopDate = NSDate()
-    print(stopDate.timeIntervalSinceDate(startDate))
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
     return nums
 }
 print(insertSort(arr))
 
 print("3.1-使用二分查找位置")
-func insertSort2(arr: [Int]) -> [Int] {
-    let startDate = NSDate()
+func insertSort2(_ arr: [Int]) -> [Int] {
+    let startDate = Date()
     var nums = arr
     let len = nums.count
 
@@ -177,15 +177,15 @@ func insertSort2(arr: [Int]) -> [Int] {
                 left = middle + 1;
             }
         }
-        for j in (i-1).stride(through: left, by: -1) {
+        for j in stride(from: (i-1), through: left, by: -1) {
             nums[j + 1] = nums[j];
         }
         nums[left] = key;
 
     }
 
-    let stopDate = NSDate()
-    print(stopDate.timeIntervalSinceDate(startDate))
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
     return nums
 }
 print(insertSort2(arr))
@@ -202,7 +202,20 @@ print(insertSort2(arr))
 
 print("排序")
 
+print("2^n次方算法设计-有待完善")
+// 群里说有个面试题是这个，所以试着想了一下
 
+func sypow(x: Float, n: Int) -> Float {
+    if n == 0 {return 1.0;}
+    if n == 1 {return x;}
+    if n % 2 == 0 {
+        return sypow(x: x*x, n: n/2)
+    } else {
+        return sypow(x: x*x, n: n/2) * x
+    }
+}
+
+print(sypow(x: 2,n: 10))
 
 
 
