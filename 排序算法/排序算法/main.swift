@@ -218,12 +218,82 @@ func sypow(x: Float, n: Int) -> Float {
 print(sypow(x: 2,n: 10))
 
 
+print("3.1-使用二分查找位置2")
+func insertSort3(_ arr: [Int]) -> [Int] {
+    let startDate = Date()
+    var nums = arr
+    let len = nums.count
+    
+    for i in 1..<len {
+        let key = nums[i]
+        var left = 0, right = i - 1;
+        while left <= right {
+            let middle = Int((left+right)/2)
+            if key < nums[middle] {
+                right = middle - 1;
+            } else {
+                left = middle + 1;
+            }
+        }
+        for j in stride(from: (i-1), through: left, by: -1) {
+            nums[j + 1] = nums[j];
+        }
+        nums[left] = key;
+    }
+    
+    let stopDate = Date()
+    print(stopDate.timeIntervalSince(startDate))
+    return nums
+}
+print(insertSort2(arr))
 
 
+func checkAbnormal1(_ arr: [Int], checkNum: Int, maxCount: Int, startIndex: inout Int, keyNums: inout [Int:Int]) -> Bool {
+    print("=======================\ncheckAbnormal1\n")
+    let startDate = Date()
+    
+    for i in startIndex..<arr.count {
+        let num = arr[i];
+        if (keyNums[num] != nil) {
+            let count = keyNums[num]!
+            keyNums[num] = count+1
+        } else {
+            keyNums[num] = 1
+        }
+    }
+    
+    let stopDate = Date()
+    print("耗时 \(stopDate.timeIntervalSince(startDate))")
+    
+    if keyNums[checkNum] == nil {
+        print("暂时没有统计到该数")
+        return false
+    }
+    
+    if keyNums[checkNum]! > maxCount {
+        return true
+    }
+    
+    return false
+}
+
+var nums = [1,2,5,2,4,3,1,7,6,4,3,2]
+var keyNums = [Int:Int]()
+var startIndex = 0
+let maxCount = 2
+
+print("2是否异常 \(checkAbnormal1(nums, checkNum: 2, maxCount: 2, startIndex: &startIndex, keyNums: &keyNums))")
+print("3是否异常 \(checkAbnormal1(nums, checkNum: 3, maxCount: 2, startIndex: &startIndex, keyNums: &keyNums))")
 
 
-
-
+func checkAbnormal2(_ arr: [Int], checkNum: Int, maxCount: Int) -> Bool {
+    print("=======================\ncheckAbnormal2\n")
+    let startDate = Date()
+    
+    
+    
+    return false
+}
 
 
 
